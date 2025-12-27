@@ -264,10 +264,6 @@ public class Shop {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "category")
-    @Enumerated(EnumType.STRING)
-    private Category category;
-
     @Column(name = "open_time")
     private LocalTime openTime;
 
