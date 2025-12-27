@@ -18,6 +18,10 @@ public class FoodCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
+
     @Column(name = "category")
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -276,6 +280,10 @@ public class Shop {
 
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     @Builder.Default
+    private List<FoodCategory> foodCategoryList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Mission> missionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
@@ -449,3 +457,21 @@ public class ShopLocal extends BaseEntity {
     private Region region;
 }
 ```
+------
+### Category.java
+package com.example.umc9th.global.enums;
+
+public enum Category {
+    KOREAN_FOOD,
+    JAPANESE_FOOD,
+    CHINESE_FOOD,
+    WESTERN_FOOD,
+    CHICKEN,
+    BUNSIK,
+    MEAT,
+    LUNCH_BOX,
+    LATE_NIGHT_MEAL,
+    FAST_FOOD,
+    DESSERT,
+    ASIAN_FOOD
+}
