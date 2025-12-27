@@ -211,8 +211,9 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "평점을 입력해주세요.")
     @Column(name = "rating", nullable = false)
-    private Integer rating;
+    private Double rating;
 
     @Column(name = "review_text", columnDefinition = "TEXT")
     private String reviewText;
@@ -288,7 +289,7 @@ public class Shop {
 
 }
 ```
-### User.java
+### Users.java
 ```java
 package com.example.umc9th.domain.user.entity;
 
@@ -311,7 +312,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "user")
+@Table(name = "users")
 public class User extends BaseEntity {
 
     @Id
@@ -338,7 +339,7 @@ public class User extends BaseEntity {
     @Column(name = "login_id", length = 10, nullable = false)
     private String loginId;
 
-    @Column(name = "password", length = 15, nullable = false)
+    @Column(name = "password", length = 100, nullable = false)
     private String password;
 
     @Column(name = "inactive_time")
